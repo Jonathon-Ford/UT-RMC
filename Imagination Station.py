@@ -23,6 +23,32 @@ RR.start(100)
 RL.start(100)
 
 
+# Define functions for kids to use
+
+def forward(self):
+    FR.ChangeDutyCycle(6.5)
+    FL.ChangeDutyCycle(8)
+    RR.ChangeDutyCycle(6.5)
+    RL.ChangeDutyCycle(8)
+    time.sleep(self)
+    FR.ChangeDutyCycle(100)
+    FL.ChangeDutyCycle(100)
+    RR.ChangeDutyCycle(100)
+    RL.ChangeDutyCycle(100)
+
+
+def reverse(self):
+    FR.ChangeDutyCycle(8)
+    FL.ChangeDutyCycle(6.5)
+    RR.ChangeDutyCycle(8)
+    RL.ChangeDutyCycle(6.5)
+    time.sleep(self)
+    FR.ChangeDutyCycle(100)
+    FL.ChangeDutyCycle(100)
+    RR.ChangeDutyCycle(100)
+    RL.ChangeDutyCycle(100)
+
+
 def turn_right():
     FR.ChangeDutyCycle(10)
     FL.ChangeDutyCycle(10)
@@ -54,48 +80,22 @@ def stop():
     RL.ChangeDutyCycle(100)
 
 
-class Station:
+# Print instructions
+print("To go forward type forward(Time) and press enter. Where time is how long the robot runs")
+print("To go backwards type reverse(Time) and press enter. Where time is how long the robot runs")
+print("To turn right 90 degrees type turn_right() and press enter")
+print("To turn left 90 degrees type turn_left() and press enter")
+print("Using these functions program the robot through the obstacle course!")
+print("Type all your instructions in at once. When you enter Start, your program will run. Good Luck!")
 
-    # Define functions for kids to use
+# Obtain inputs and push them to an array
+command = 0
+instructions = []  # Array that stores the kids code
+while command != "Start":  # While the command is not Start continue taking commands and save them to the array
+    command = input()
+    instructions.append(command)
 
-    def forward(self):
-        FR.ChangeDutyCycle(6.5)
-        FL.ChangeDutyCycle(8)
-        RR.ChangeDutyCycle(6.5)
-        RL.ChangeDutyCycle(8)
-        time.sleep(self)
-        FR.ChangeDutyCycle(100)
-        FL.ChangeDutyCycle(100)
-        RR.ChangeDutyCycle(100)
-        RL.ChangeDutyCycle(100)
-
-    def reverse(self):
-        FR.ChangeDutyCycle(8)
-        FL.ChangeDutyCycle(6.5)
-        RR.ChangeDutyCycle(8)
-        RL.ChangeDutyCycle(6.5)
-        time.sleep(self)
-        FR.ChangeDutyCycle(100)
-        FL.ChangeDutyCycle(100)
-        RR.ChangeDutyCycle(100)
-        RL.ChangeDutyCycle(100)
-
-    # Print instructions
-    print("To go forward type forward(Time) and press enter. Where time is how long the robot runs")
-    print("To go backwards type reverse(Time) and press enter. Where time is how long the robot runs")
-    print("To turn right 90 degrees type turn_right() and press enter")
-    print("To turn left 90 degrees type turn_left() and press enter")
-    print("Using these functions program the robot through the obstacle course!")
-    print("Type all your instructions in at once. When you enter Start, your program will run. Good Luck!")
-
-    # Obtain inputs and push them to an array
-    command = 0
-    instructions = []  # Array that stores the kids code
-    while command != "Start":  # While the command is not Start continue taking commands and save them to the array
-        command = input()
-        instructions.append(command)
-
-    # Read the instructions given and run the functions
-    print("Your output is:")
-    for x in instructions:
-        eval(x)
+# Read the instructions given and run the functions
+print("Your output is:")
+for x in instructions:
+    eval(x)
